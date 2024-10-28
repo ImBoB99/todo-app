@@ -24,6 +24,9 @@ class TodoGroup {
     displayTodos() {
         this.todos.forEach((todo) => {
             console.log(todo.title)
+            console.log(todo.description)
+            console.log(todo.dueDate)
+            console.log(todo.priority)
         })
     }
 }
