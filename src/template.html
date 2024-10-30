@@ -14,12 +14,35 @@
 
 <body>
 
+    <dialog id="todoForm">
+        <form>
+            <div class="form-title">
+                <label for="form-todotitle"></label>
+                <input type="text" name="form-todotitle" id="form-todotitle">
+            </div>
+            <div class="form-date">
+                <label for="form-tododuedate">Due Date</label>
+                <input type="date" name="form-tododuedate" id="form-tododuedate">
+            </div>
+            <div class="form-priority">
+                <label for="form-todopriority">Priority</label>
+                <select name="form-todopriority" id="form-todopriority">
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </select>
+            </div>
+            <button value="cancel" formmethod="dialog">Cancel</button>
+            <button id="todoForm-confirm" value="default">Confirm</button>
+        </form>
+    </dialog>
+
     <main>
         <div class="side-menu">
             <nav class="side-nav">
                 <div class="menu-item">
                     <div class="menu-icon">
-                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="add-todo" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <g stroke-width="0"></g>
                             <g stroke-linecap="round" stroke-linejoin="round"></g>
                             <g>

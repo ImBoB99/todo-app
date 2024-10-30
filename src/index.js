@@ -12,3 +12,25 @@ project.addTodo(todo2)
 project.addTodo(todo3)
 
 project.displayTodos()
+
+const showTodoForm = document.querySelector("#add-todo");
+const todoForm = document.querySelector("#todoForm")
+const todoFormConfirm = document.querySelector("#todoForm-confirm")
+
+showTodoForm.addEventListener("click", () => {
+    todoForm.showModal();
+});
+
+todoFormConfirm.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const todoTitle = document.getElementById("form-todotitle").value;
+    const todoDueDate = document.getElementById("form-tododuedate").value;
+    const todoPriority = document.getElementById("form-todopriority").value;
+
+    console.log("Title:", todoTitle);
+    console.log("Due Date:", todoDueDate);
+    console.log("Priority:", todoPriority);
+
+    todoForm.close();
+})
