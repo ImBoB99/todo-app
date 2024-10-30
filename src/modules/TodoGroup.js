@@ -1,3 +1,5 @@
+import { displayTodo } from "./displayTodo";
+
 class TodoGroup {
 
     constructor(name = "default") {
@@ -22,11 +24,17 @@ class TodoGroup {
     }
 
     displayTodos() {
+
+        const content = document.querySelector(".content");
+
+        const todoGroupName = document.createElement("h1");
+
+        todoGroupName.textContent = this.name;
+
+        content.append(todoGroupName);
+        
         this.todos.forEach((todo) => {
-            console.log(todo.title)
-            console.log(todo.description)
-            console.log(todo.dueDate)
-            console.log(todo.priority)
+            displayTodo(todo.title, todo.dueDate, todo.priority)
         })
     }
 }
