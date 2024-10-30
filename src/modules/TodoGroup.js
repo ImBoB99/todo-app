@@ -2,9 +2,12 @@ import { displayTodo } from "./displayTodo";
 
 class TodoGroup {
 
-    constructor(name = "default") {
+    static instances = []
+
+    constructor(name) {
         this.name = name;
         this.todos = [];
+        TodoGroup.instances.push(this);
     }
 
     addTodo(todo) {
