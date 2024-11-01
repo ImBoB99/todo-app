@@ -1,5 +1,6 @@
 import { Todo } from "./Todo";
-import { displayTodos } from "..";
+import { displayTodos } from "./displayTodos";
+import { state } from "./state";
 
 function initializeTodoForm(currentTodoGroup) {
 
@@ -21,10 +22,10 @@ function initializeTodoForm(currentTodoGroup) {
         const newTodo = new Todo(todoTitle, todoDueDate, todoPriority);
 
         // Add the new todo to the current todo group
-        currentTodoGroup.addTodo(newTodo);
-        displayTodos(currentTodoGroup)
+        state.currentTodoGroup.addTodo(newTodo);
+        displayTodos(state.currentTodoGroup)
 
-        console.log(currentTodoGroup)
+        console.log(state.currentTodoGroup)
 
         todoForm.close();
     })

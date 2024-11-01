@@ -1,4 +1,4 @@
-import { displayTodos } from "..";
+import { displayTodos } from "./displayTodos";
 
 // load a currentTodoGroup variable into the scope and function for its switching
 // when its switched, re-render content to display the new Todos
