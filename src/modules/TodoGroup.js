@@ -1,5 +1,5 @@
 import { displayTodo } from "./displayTodo";
-
+import { setCurrentTodoGroup } from "./state";
 class TodoGroup {
 
     static instances = []
@@ -8,6 +8,7 @@ class TodoGroup {
         this.name = name;
         this.todos = [];
         TodoGroup.instances.push(this);
+        setCurrentTodoGroup(this)
     }
 
     addTodo(todo) {
@@ -24,21 +25,6 @@ class TodoGroup {
         } else {
             console.log(`${todo.title} does not exist`);
         }
-    }
-
-    displayTodos() {
-
-        const content = document.querySelector(".content");
-
-        const todoGroupName = document.createElement("h1");
-
-        todoGroupName.textContent = this.name;
-
-        content.append(todoGroupName);
-        
-        this.todos.forEach((todo) => {
-            displayTodo(todo.title, todo.dueDate, todo.priority)
-        })
     }
 }
 

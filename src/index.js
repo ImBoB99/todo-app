@@ -3,9 +3,9 @@ import { Todo } from "./modules/Todo";
 import { TodoGroup } from "./modules/TodoGroup";
 import {submitTodoGroup} from "./modules/submitTodoGroup";
 import { currentTodoGroup, setCurrentTodoGroup } from "./modules/state";
+import { displayTodo } from "./modules/displayTodo";
 
 submitTodoGroup("Default Project")
-submitTodoGroup("Second Project")
 
 setCurrentTodoGroup(TodoGroup.instances[0])
 
@@ -32,6 +32,7 @@ todoFormConfirm.addEventListener("click", (event) => {
 
     // Add the new todo to the current todo group
     currentTodoGroup.addTodo(newTodo);
+    displayTodos(currentTodoGroup)
 
     console.log(currentTodoGroup)
 
@@ -61,3 +62,24 @@ todoGroupFormConfirm.addEventListener("click", (event) => {
 
     submitTodoGroup(todoGroupName)
 })
+
+// Displaying the content
+
+function displayTodos(currentTodoGroup) {
+
+    const content = document.querySelector(".content");
+
+    content.innerHTML = "";
+
+    const todoGroupName = document.createElement("h1");
+
+    todoGroupName.textContent = currentTodoGroup.name;
+
+    content.append(todoGroupName);
+    
+    currentTodoGroup.todos.forEach((todo) => {
+        displayTodo(todo.title, todo.dueDate, todo.priority)
+    })
+}
+
+export {displayTodos}
