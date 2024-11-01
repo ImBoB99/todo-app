@@ -1,43 +1,20 @@
 import "./styles.css";
 import { TodoGroup } from "./modules/TodoGroup";
 import {displayTodoGroup} from "./modules/displayTodoGroup";
-import { currentTodoGroup } from "./modules/state";
+import { state } from "./modules/state";
 import { displayTodo } from "./modules/displayTodo";
 import { initializeTodoForm } from "./modules/initializeTodoForm";
+import { initializeTodoGroupForm } from "./modules/initializeTodoGroupForm";
 
 new TodoGroup("Default Project")
 
 displayTodoGroup("Default Project");
 
-console.log(currentTodoGroup)
+console.log(state.currentTodoGroup);
 
-initializeTodoForm(currentTodoGroup)
+initializeTodoForm(state.currentTodoGroup);
 
-// TODO GROUP FORM
-
-const addTodoGroupBtn = document.querySelector("#addTodoGroup");
-const todoGroupForm = document.querySelector("#todoGroupForm")
-const todoGroupFormCancel = document.querySelector("#todoGroupForm-cancel")
-const todoGroupFormConfirm = document.querySelector("#todoGroupForm-confirm")
-
-addTodoGroupBtn.addEventListener("click", () => {
-    todoGroupForm.style.display = "inline-flex";
-})
-
-todoGroupFormCancel.addEventListener("click", (event) => {
-    event.preventDefault();
-    todoGroupForm.style.display = "none";
-})
-
-todoGroupFormConfirm.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    const todoGroupName = document.querySelector("#form-todoGroupName").value;
-
-    new TodoGroup(todoGroupName);
-
-    displayTodoGroup(todoGroupName);
-})
+initializeTodoGroupForm();
 
 // Displaying the content
 
@@ -49,11 +26,11 @@ function displayTodos(currentTodoGroup) {
 
     const todoGroupName = document.createElement("h1");
 
-    todoGroupName.textContent = currentTodoGroup.name;
+    todoGroupName.textContent = state.currentTodoGroup.name;
 
     content.append(todoGroupName);
     
-    currentTodoGroup.todos.forEach((todo) => {
+    state.currentTodoGroup.todos.forEach((todo) => {
         displayTodo(todo.title, todo.dueDate, todo.priority)
     })
 }

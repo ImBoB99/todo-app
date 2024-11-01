@@ -3,11 +3,16 @@ import { displayTodos } from "..";
 // load a currentTodoGroup variable into the scope and function for its switching
 // when its switched, re-render content to display the new Todos
 
-let currentTodoGroup = null;
+const state = {
+    currentTodoGroup: null,
+};
 
 function setCurrentTodoGroup(todoGroup) {
-    currentTodoGroup = todoGroup;
-    displayTodos(currentTodoGroup)
+    state.currentTodoGroup = todoGroup;
+    displayTodos(state.currentTodoGroup)
 }
 
-export {currentTodoGroup, setCurrentTodoGroup}
+// Make the state object globally accessible for testing
+window.state = state;
+
+export {state, setCurrentTodoGroup}

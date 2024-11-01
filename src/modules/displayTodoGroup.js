@@ -1,5 +1,5 @@
 import { TodoGroup } from "./TodoGroup";
-import { currentTodoGroup } from "./state";
+import { state } from "./state";
 import { setCurrentTodoGroup } from "./state";
 
 // display a created Todo Group and add event listeners for Todo Group switching
@@ -52,7 +52,7 @@ function displayTodoGroup(todoGroupName) {
 
         setCurrentTodoGroup(TodoGroup.instances[projectIndex])
 
-        console.log(currentTodoGroup)
+        console.log(state.currentTodoGroup)
     })
 
     console.log(TodoGroup.instances)
