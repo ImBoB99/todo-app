@@ -1,13 +1,13 @@
 import "./styles.css";
 import { Todo } from "./modules/Todo";
 import { TodoGroup } from "./modules/TodoGroup";
-import {submitTodoGroup} from "./modules/submitTodoGroup";
-import { currentTodoGroup, setCurrentTodoGroup } from "./modules/state";
+import {displayTodoGroup} from "./modules/displayTodoGroup";
+import { currentTodoGroup } from "./modules/state";
 import { displayTodo } from "./modules/displayTodo";
 
-submitTodoGroup("Default Project")
+new TodoGroup("Default Project")
 
-setCurrentTodoGroup(TodoGroup.instances[0])
+displayTodoGroup("Default Project");
 
 console.log(currentTodoGroup)
 
@@ -60,7 +60,9 @@ todoGroupFormConfirm.addEventListener("click", (event) => {
 
     const todoGroupName = document.querySelector("#form-todoGroupName").value;
 
-    submitTodoGroup(todoGroupName)
+    new TodoGroup(todoGroupName);
+
+    displayTodoGroup(todoGroupName);
 })
 
 // Displaying the content

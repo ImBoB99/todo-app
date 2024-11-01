@@ -1,3 +1,5 @@
+// class with constructor for the todo
+
 class Todo {
     
     constructor(title, dueDate, priority) {

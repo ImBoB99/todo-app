@@ -1,3 +1,5 @@
+// function to render a single TODO element to the DOM
+
 function displayTodo(title, date, priority) {
     const content = document.querySelector(".content");
 

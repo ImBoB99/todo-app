@@ -2,11 +2,10 @@ import { TodoGroup } from "./TodoGroup";
 import { currentTodoGroup } from "./state";
 import { setCurrentTodoGroup } from "./state";
 
-function submitTodoGroup(todoGroupName) {
+// display a created Todo Group and add event listeners for Todo Group switching
+
+function displayTodoGroup(todoGroupName) {
     const todoGroupsContainer = document.querySelector(".todo-groups");
-
-    new TodoGroup(todoGroupName);
-
     const menuItem = document.createElement("div")
     menuItem.classList.add("menu-item")
     menuItem.setAttribute("todo-group", `${todoGroupName}`)
@@ -59,4 +58,4 @@ function submitTodoGroup(todoGroupName) {
     console.log(TodoGroup.instances)
 }
 
-export {submitTodoGroup}
+export {displayTodoGroup}
