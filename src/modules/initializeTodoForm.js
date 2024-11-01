@@ -23,9 +23,7 @@ function initializeTodoForm(currentTodoGroup) {
 
         // Add the new todo to the current todo group
         state.currentTodoGroup.addTodo(newTodo);
-        displayTodos(state.currentTodoGroup)
-
-        console.log(state.currentTodoGroup)
+        displayTodos(state.currentTodoGroup);
 
         todoForm.close();
     })

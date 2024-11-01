@@ -15,7 +15,7 @@ function displayTodos(currentTodoGroup) {
     
     state.currentTodoGroup.todos.forEach((todo) => {
         displayTodo(todo.title, todo.dueDate, todo.priority)
-    })
+    });
 }
 
 export {displayTodos}

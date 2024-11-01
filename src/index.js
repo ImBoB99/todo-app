@@ -5,7 +5,10 @@ import { state } from "./modules/state";
 import { initializeTodoForm } from "./modules/initializeTodoForm";
 import { initializeTodoGroupForm } from "./modules/initializeTodoGroupForm";
 
-new TodoGroup("Default Project")
+
+// Initial initialization
+
+new TodoGroup("Default Project");
 
 displayTodoGroup("Default Project");
 

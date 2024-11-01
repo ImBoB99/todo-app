@@ -9,7 +9,7 @@ const state = {
 
 function setCurrentTodoGroup(todoGroup) {
     state.currentTodoGroup = todoGroup;
-    displayTodos(state.currentTodoGroup)
+    displayTodos(state.currentTodoGroup);
 }
 
 // Make the state object globally accessible for testing

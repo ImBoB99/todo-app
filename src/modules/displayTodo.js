@@ -4,20 +4,20 @@ function displayTodo(title, date, priority) {
     const content = document.querySelector(".content");
 
     const todoDiv = document.createElement("div");
-    todoDiv.classList.add("todo")
+    todoDiv.classList.add("todo");
 
     const todoCheckbox = document.createElement("div");
-    todoCheckbox.classList.add("todo-checkbox")
+    todoCheckbox.classList.add("todo-checkbox");
 
     const todoDescription = document.createElement("div");
-    todoDescription.classList.add("todo-description")
+    todoDescription.classList.add("todo-description");
 
     const todoTitle = document.createElement("p");
-    todoTitle.classList.add("todo-title")
+    todoTitle.classList.add("todo-title");
     todoTitle.textContent = title;
 
     const todoDate = document.createElement("div");
-    todoDate.classList.add("todo-date")
+    todoDate.classList.add("todo-date");
 
     // Add SVG clock icon to todoDate
     const clockIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -41,14 +41,14 @@ function displayTodo(title, date, priority) {
     todoDate.appendChild(dueDate);
 
     const todoPriority = document.createElement("p");
-    todoPriority.classList.add("todo-priority")
+    todoPriority.classList.add("todo-priority");
     todoPriority.textContent = `${priority} Priority`;
 
-    todoDescription.append(todoTitle, todoDate, todoPriority)
+    todoDescription.append(todoTitle, todoDate, todoPriority);
 
-    todoDiv.append(todoCheckbox, todoDescription)
+    todoDiv.append(todoCheckbox, todoDescription);
 
-    content.append(todoDiv)
+    content.append(todoDiv);
 
 }
 

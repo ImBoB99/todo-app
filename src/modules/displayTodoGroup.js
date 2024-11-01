@@ -1,16 +1,15 @@
 import { TodoGroup } from "./TodoGroup";
-import { state } from "./state";
 import { setCurrentTodoGroup } from "./state";
 
 // display a created Todo Group and add event listeners for Todo Group switching
 
 function displayTodoGroup(todoGroupName) {
     const todoGroupsContainer = document.querySelector(".todo-groups");
-    const menuItem = document.createElement("div")
-    menuItem.classList.add("menu-item")
-    menuItem.setAttribute("todo-group", `${todoGroupName}`)
-    const menuIcon = document.createElement("div")
-    menuIcon.classList.add("menu-icon")
+    const menuItem = document.createElement("div");
+    menuItem.classList.add("menu-item");
+    menuItem.setAttribute("todo-group", `${todoGroupName}`);
+    const menuIcon = document.createElement("div");
+    menuIcon.classList.add("menu-icon");
     const menuIconSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     menuIconSvg.setAttribute("viewBox", "0 0 24 24");
     menuIconSvg.setAttribute("fill", "none");
@@ -35,27 +34,22 @@ function displayTodoGroup(todoGroupName) {
     `;
     menuIcon.appendChild(menuIconSvg);
 
-    const menuText = document.createElement("span")
+    const menuText = document.createElement("span");
 
     menuText.textContent = todoGroupName;
-    menuText.classList.add("menu-text")
+    menuText.classList.add("menu-text");
 
-    menuItem.append(menuIcon, menuText)
+    menuItem.append(menuIcon, menuText);
 
-    todoGroupsContainer.append(menuItem)
+    todoGroupsContainer.append(menuItem);
 
     menuItem.addEventListener("click", () => {
-        const projectIndex = TodoGroup.instances.findIndex(group => group.name === todoGroupName)
-        console.log(projectIndex)
+        const projectIndex = TodoGroup.instances.findIndex(group => group.name === todoGroupName);
 
         // Switch the active group on click
 
-        setCurrentTodoGroup(TodoGroup.instances[projectIndex])
-
-        console.log(state.currentTodoGroup)
+        setCurrentTodoGroup(TodoGroup.instances[projectIndex]);
     })
-
-    console.log(TodoGroup.instances)
 }
 
 export {displayTodoGroup}

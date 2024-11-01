@@ -3,9 +3,9 @@ import { displayTodoGroup } from "./displayTodoGroup";
 
 function initializeTodoGroupForm() {
     const addTodoGroupBtn = document.querySelector("#addTodoGroup");
-    const todoGroupForm = document.querySelector("#todoGroupForm")
-    const todoGroupFormCancel = document.querySelector("#todoGroupForm-cancel")
-    const todoGroupFormConfirm = document.querySelector("#todoGroupForm-confirm")
+    const todoGroupForm = document.querySelector("#todoGroupForm");
+    const todoGroupFormCancel = document.querySelector("#todoGroupForm-cancel");
+    const todoGroupFormConfirm = document.querySelector("#todoGroupForm-confirm");
     
     addTodoGroupBtn.addEventListener("click", () => {
         todoGroupForm.style.display = "inline-flex";
