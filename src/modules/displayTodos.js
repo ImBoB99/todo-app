@@ -13,8 +13,8 @@ function displayTodos(currentTodoGroup) {
 
     content.append(todoGroupName);
     
-    state.currentTodoGroup.todos.forEach((todo) => {
-        displayTodo(todo.title, todo.dueDate, todo.priority)
+    state.currentTodoGroup.todos.forEach((todo, index) => {
+        displayTodo(todo.title, todo.dueDate, todo.priority, index, todo.finished)
     });
 }
 

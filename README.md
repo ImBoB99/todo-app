@@ -2,8 +2,7 @@
 
 To do:
 
-1. erorr checking, make sure empty todos or groups cant be created
-2. dont allow same project name for todo group
+1. add form error validation responses
 2. todo finished toggling on/off
 3. todo deletion button + functionality
 4. prettify date

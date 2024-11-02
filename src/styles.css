@@ -152,3 +152,7 @@ main {
 #todoGroupForm {
   display: none;
 }
+
+.todo[finished="true"] .todo-checkbox {
+  background-color: green;
+}

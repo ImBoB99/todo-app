@@ -1,10 +1,13 @@
 // function to render a single TODO element to the DOM
+import { state } from "./state";
 
-function displayTodo(title, date, priority) {
+function displayTodo(title, date, priority, index, finished) {
     const content = document.querySelector(".content");
 
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
+    todoDiv.setAttribute("index", `${index}`);
+    todoDiv.setAttribute("finished", `${finished}`);
 
     const todoCheckbox = document.createElement("div");
     todoCheckbox.classList.add("todo-checkbox");
@@ -49,6 +52,15 @@ function displayTodo(title, date, priority) {
     todoDiv.append(todoCheckbox, todoDescription);
 
     content.append(todoDiv);
+
+    // Event listener for todo completion toggling
+
+    todoCheckbox.addEventListener("click", (event) => {
+
+        const index = event.target.parentElement.getAttribute("index");
+        state.currentTodoGroup.todos[index].toggleFinished();
+        todoDiv.setAttribute("finished", `${state.currentTodoGroup.todos[index].finished}`);
+    })
 
 }
 
