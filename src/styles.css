@@ -65,7 +65,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  min-width: 500px;
+  min-width: 300px;
   height: 100vh;
   position: absolute;
   left: 0;
@@ -106,13 +106,15 @@ main {
 .content {
   padding-top: 5rem;
   padding-left: 5rem;
+  min-width: 600px;
 }
 
 .todo {
   display: flex;
   gap: 1rem;
   align-items: center;
-  min-width: 300px;
+  min-width: 500px;
+  position: relative;
 }
 
 .todo-checkbox {
@@ -155,4 +157,13 @@ main {
 
 .todo[finished="true"] .todo-checkbox {
   background-color: green;
+}
+
+.delete-icon {
+  position: absolute;
+  color: white;
+  width: 18px;
+  height: 18px;
+  top: 50%;
+  right: 0;
 }

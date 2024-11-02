@@ -1,5 +1,6 @@
 // function to render a single TODO element to the DOM
 import { state } from "./state";
+import { displayTodos } from "./displayTodos";
 
 function displayTodo(title, date, priority, index, finished) {
     const content = document.querySelector(".content");
@@ -47,6 +48,26 @@ function displayTodo(title, date, priority, index, finished) {
     todoPriority.classList.add("todo-priority");
     todoPriority.textContent = `${priority} Priority`;
 
+    const deleteIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    deleteIcon.setAttribute("class", "delete-icon");
+    deleteIcon.setAttribute("viewBox", "0 0 24 24");
+    deleteIcon.setAttribute("fill", "none");
+
+    deleteIcon.innerHTML = `    <g stroke-width="0"></g>
+    <g stroke-linecap="round" stroke-linejoin="round"></g>
+    <g>
+        <path
+            d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z"
+            stroke="currentColor" stroke-width="2"></path>
+        <path d="M19.5 5H4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="currentColor"
+            stroke-width="2"></path>
+        <path d="M14 12V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M10 12V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    </g>
+    `;
+    todoDiv.appendChild(deleteIcon)
+
     todoDescription.append(todoTitle, todoDate, todoPriority);
 
     todoDiv.append(todoCheckbox, todoDescription);
@@ -62,6 +83,21 @@ function displayTodo(title, date, priority, index, finished) {
         todoDiv.setAttribute("finished", `${state.currentTodoGroup.todos[index].finished}`);
     })
 
+
+    // Event listener for todo deletion
+
+    deleteIcon.addEventListener("click", (event) => {
+
+        const index = event.target.parentElement.getAttribute("index");
+
+        if (index !== -1) {
+            state.currentTodoGroup.todos.splice(index, 1);
+        }
+
+        displayTodos(state.currentTodoGroup);
+
+    })
+
 }
 
-export {displayTodo}
+export { displayTodo }
