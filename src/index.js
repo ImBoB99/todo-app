@@ -6,7 +6,7 @@ import { initializeTodoForm } from "./modules/initializeTodoForm";
 import { initializeTodoGroupForm } from "./modules/initializeTodoGroupForm";
 
 
-// Initial initialization
+// Initialize a default todo group and add event listeners to buttons
 
 new TodoGroup("Default Project");
 

@@ -30,4 +30,6 @@ class TodoGroup {
     }
 }
 
+window.instances = TodoGroup.instances;
+
 export {TodoGroup}
