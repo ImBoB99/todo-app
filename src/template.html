@@ -17,18 +17,18 @@
     <dialog id="todoForm">
         <form>
             <div class="form-title">
-                <label for="form-todotitle"></label>
-                <input type="text" name="form-todotitle" id="form-todotitle">
+                <label for="form-todotitle">Todo Title</label>
+                <input type="text" name="form-todotitle" id="form-todotitle" required>
             </div>
             <div class="form-date">
                 <label for="form-tododuedate">Due Date</label>
-                <input type="date" name="form-tododuedate" id="form-tododuedate">
+                <input type="date" name="form-tododuedate" id="form-tododuedate" required>
             </div>
             <div class="form-priority">
                 <label for="form-todopriority">Priority</label>
-                <select name="form-todopriority" id="form-todopriority">
+                <select name="form-todopriority" id="form-todopriority" required>
                     <option>Low</option>
-                    <option>Medium</option>
+                    <option selected>Medium</option>
                     <option>High</option>
                 </select>
             </div>

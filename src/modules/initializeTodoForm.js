@@ -1,6 +1,7 @@
 import { Todo } from "./Todo";
 import { displayTodos } from "./displayTodos";
 import { state } from "./state";
+import { validateTodoForm } from "./helperFunctions";
 
 function initializeTodoForm(currentTodoGroup) {
 
@@ -19,13 +20,17 @@ function initializeTodoForm(currentTodoGroup) {
         const todoDueDate = document.getElementById("form-tododuedate").value;
         const todoPriority = document.getElementById("form-todopriority").value;
 
-        const newTodo = new Todo(todoTitle, todoDueDate, todoPriority);
+        if (validateTodoForm(todoTitle, todoDueDate)) {
+            const newTodo = new Todo(todoTitle, todoDueDate, todoPriority);
 
-        // Add the new todo to the current todo group
-        state.currentTodoGroup.addTodo(newTodo);
-        displayTodos(state.currentTodoGroup);
-
-        todoForm.close();
+            // Add the new todo to the current todo group
+            state.currentTodoGroup.addTodo(newTodo);
+            displayTodos(state.currentTodoGroup);
+    
+            todoForm.close();
+        } else {
+            alert("Form didnt pass checks")
+        }
     })
 
 }

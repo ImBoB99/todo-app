@@ -8,4 +8,10 @@ function checkDuplicateTodoGroup(todoGroupName) {
     }
 }
 
-export {checkDuplicateTodoGroup}
+function validateTodoForm(todoTitle, todoDueDate) {
+    if ((todoTitle.trim().length !== 0) && (todoDueDate !== "")) {
+        return true;
+    }
+}
+
+export {checkDuplicateTodoGroup, validateTodoForm}
