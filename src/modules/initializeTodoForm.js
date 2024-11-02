@@ -3,6 +3,8 @@ import { displayTodos } from "./displayTodos";
 import { state } from "./state";
 import { validateTodoForm } from "./helperFunctions";
 
+import { parse, format } from 'date-fns'
+
 function initializeTodoForm(currentTodoGroup) {
 
     const showTodoForm = document.querySelector("#add-todo");
@@ -20,8 +22,12 @@ function initializeTodoForm(currentTodoGroup) {
         const todoDueDate = document.getElementById("form-tododuedate").value;
         const todoPriority = document.getElementById("form-todopriority").value;
 
+        // use date-fns to parse and format the date
+        const parsedDueDate = parse(todoDueDate, 'yyyy-MM-dd', new Date())
+        const formattedDueDate = format(parsedDueDate, 'EEEE, MMMM d yyyy');
+
         if (validateTodoForm(todoTitle, todoDueDate)) {
-            const newTodo = new Todo(todoTitle, todoDueDate, todoPriority);
+            const newTodo = new Todo(todoTitle, formattedDueDate, todoPriority);
 
             // Add the new todo to the current todo group
             state.currentTodoGroup.addTodo(newTodo);
