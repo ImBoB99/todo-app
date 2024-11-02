@@ -18,15 +18,16 @@
         <form>
             <div class="form-title">
                 <label for="form-todotitle">Todo Title</label>
-                <input type="text" name="form-todotitle" id="form-todotitle" required>
+                <input type="text" name="form-todotitle" id="form-todotitle">
+                <span class="error-title"></span>
             </div>
             <div class="form-date">
                 <label for="form-tododuedate">Due Date</label>
-                <input type="date" name="form-tododuedate" id="form-tododuedate" required>
+                <input type="date" name="form-tododuedate" id="form-tododuedate">
             </div>
             <div class="form-priority">
                 <label for="form-todopriority">Priority</label>
-                <select name="form-todopriority" id="form-todopriority" required>
+                <select name="form-todopriority" id="form-todopriority">
                     <option>Low</option>
                     <option selected>Medium</option>
                     <option>High</option>
@@ -112,7 +113,8 @@
                 <form id="todoGroupForm">
                     <div class="form-todoGroup">
                         <label for="form-todoGroupName"></label>
-                        <input type="text" name="form-todoGroupName" id="form-todoGroupName" required>
+                        <input type="text" name="form-todoGroupName" id="form-todoGroupName">
+                        <span class="error-todoGroupName"></span>
                     </div>
                     <button id="todoGroupForm-cancel">Cancel</button>
                     <button id="todoGroupForm-confirm">Confirm</button>

@@ -167,3 +167,13 @@ main {
   top: 50%;
   right: 0;
 }
+
+.error-title, .error-todoGroupName {
+  display: none;
+  width: 100%;
+  padding: 0;
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+}

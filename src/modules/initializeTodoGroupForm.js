@@ -22,12 +22,17 @@ function initializeTodoGroupForm() {
     
         const todoGroupName = document.querySelector("#form-todoGroupName").value;
 
+        const displayError = document.querySelector(".error-todoGroupName");
+
         if (todoGroupName.length !== 0 && checkDuplicateTodoGroup(todoGroupName) !== true) {
             new TodoGroup(todoGroupName);
     
             displayTodoGroup(todoGroupName);
+
+            displayError.style.display = "none";
         } else {
-            alert("Can't be empty or the same Todo Group")
+            displayError.innerHTML = "Todo Title is required";
+            displayError.style.display = "flex";
         }
     })
 }

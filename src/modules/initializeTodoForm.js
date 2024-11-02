@@ -22,23 +22,28 @@ function initializeTodoForm(currentTodoGroup) {
         const todoDueDate = document.getElementById("form-tododuedate").value;
         const todoPriority = document.getElementById("form-todopriority").value;
 
-        // use date-fns to parse and format the date
-        const parsedDueDate = parse(todoDueDate, 'yyyy-MM-dd', new Date())
-        const formattedDueDate = format(parsedDueDate, 'EEEE, MMMM d yyyy');
+        const displayError = document.querySelector(".error-title");
 
         if (validateTodoForm(todoTitle, todoDueDate)) {
+            
+            // use date-fns to parse and format the date
+            const parsedDueDate = parse(todoDueDate, 'yyyy-MM-dd', new Date())
+            const formattedDueDate = format(parsedDueDate, 'EEEE, MMMM d yyyy');
+
             const newTodo = new Todo(todoTitle, formattedDueDate, todoPriority);
 
             // Add the new todo to the current todo group
             state.currentTodoGroup.addTodo(newTodo);
             displayTodos(state.currentTodoGroup);
-    
+            displayError.style.display = "none";
+
             todoForm.close();
         } else {
-            alert("Form didnt pass checks")
+            displayError.innerHTML = "Todo Title is required";
+            displayError.style.display = "flex";
         }
     })
 
 }
 
-export {initializeTodoForm}
+export { initializeTodoForm }
