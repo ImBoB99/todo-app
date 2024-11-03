@@ -5,6 +5,8 @@
   --grey: #EAEAEA;
   --white: #FFFF;
   --darkblack: #101010;
+  --green: #aaffaa;
+  --error: #ffbebe;
 }
 
 
@@ -199,11 +201,15 @@ main {
 .error-title, .error-todoGroupName {
   display: none;
   width: 100%;
-  padding: 0;
-  font-size: 80%;
+  padding: 4px;
+  font-size: 13px;
   color: white;
   background-color: #900;
   border-radius: 0 0 5px 5px;
+}
+
+.error-todoGroupName {
+  width: 160px;
 }
 
 .btn-circle {
@@ -256,12 +262,54 @@ main {
   max-width: 160px;
   padding: 0.5rem;
   border-radius: 8px;
-  position: absolute;
-  bottom: 5%;
 }
 
 #addTodoGroup:hover {
   cursor: pointer;
   background-color: var(--blueblack);
   transition: background 0.2s ease-in-out;
+}
+
+#todoGroupForm {
+  display: none;
+  flex-direction: column;
+}
+#form-todoGroupName {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #f2f2f2;
+  padding: 8px;
+  border-radius: 4px;
+  width: 235px;
+  outline: none;
+  font-size: 14px;
+}
+
+#todoGroupForm button {
+  font-size: 14px;
+  font-weight: 500;
+  width: 115px;
+  margin-top: 6px;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  padding: 6px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.btn-red {
+  background-color: var(--error);
+}
+
+.btn-green {
+  background-color: var(--green);
 }

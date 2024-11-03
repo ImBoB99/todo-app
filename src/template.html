@@ -95,17 +95,20 @@
 
             <div class="todo-groups">
                 <div class="todo-groups-heading">My Projects</div>
+                <div id="projectContainer"></div> <!-- Container for dynamically added projects -->
+                <div id="addTodoGroup">Add New Project</div>
                 <form id="todoGroupForm">
                     <div class="form-todoGroup">
                         <label for="form-todoGroupName"></label>
-                        <input type="text" name="form-todoGroupName" id="form-todoGroupName">
+                        <input type="text" name="form-todoGroupName" id="form-todoGroupName" placeholder="Project Name">
                         <span class="error-todoGroupName"></span>
                     </div>
-                    <button id="todoGroupForm-cancel">Cancel</button>
-                    <button id="todoGroupForm-confirm">Confirm</button>
+                    <div>
+                        <button id="todoGroupForm-cancel" class="btn-red">Cancel</button>
+                        <button id="todoGroupForm-confirm" class="btn-green">Confirm</button>
+                    </div>
                 </form>
             </div>
-            <div id="addTodoGroup">Add New Project</div>
         </div>
         <div class="content">
         </div>

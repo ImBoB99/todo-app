@@ -7,14 +7,17 @@ function initializeTodoGroupForm() {
     const todoGroupForm = document.querySelector("#todoGroupForm");
     const todoGroupFormCancel = document.querySelector("#todoGroupForm-cancel");
     const todoGroupFormConfirm = document.querySelector("#todoGroupForm-confirm");
+
     
     addTodoGroupBtn.addEventListener("click", () => {
         todoGroupForm.style.display = "inline-flex";
+        addTodoGroupBtn.style.display = "none";
     })
     
     todoGroupFormCancel.addEventListener("click", (event) => {
         event.preventDefault();
         todoGroupForm.style.display = "none";
+        addTodoGroupBtn.style.display = "flex";
     })
     
     todoGroupFormConfirm.addEventListener("click", (event) => {
@@ -30,9 +33,12 @@ function initializeTodoGroupForm() {
             displayTodoGroup(todoGroupName);
 
             displayError.style.display = "none";
+            todoGroupForm.style.display = "none";
+            addTodoGroupBtn.style.display = "flex";
         } else {
-            displayError.innerHTML = "Todo Title is required";
+            displayError.innerHTML = "Can't be empty/duplicate";
             displayError.style.display = "flex";
+            addTodoGroupBtn.style.display = "none";
         }
     })
 }

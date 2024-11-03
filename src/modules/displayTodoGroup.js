@@ -4,7 +4,7 @@ import { setCurrentTodoGroup } from "./state";
 // display a created Todo Group and add event listeners for Todo Group switching
 
 function displayTodoGroup(todoGroupName) {
-    const todoGroupsContainer = document.querySelector(".todo-groups");
+    const todoGroupsContainer = document.querySelector("#projectContainer");
     const menuItem = document.createElement("div");
     menuItem.classList.add("menu-item");
     menuItem.setAttribute("todo-group", `${todoGroupName}`);
