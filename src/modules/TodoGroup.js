@@ -13,9 +13,20 @@ class TodoGroup {
         setCurrentTodoGroup(this); // switch the currently displayed todo group on new Todo Group
     }
 
+    static findOrCreate(name) {
+        // Look for an existing group with the same name
+        let group = TodoGroup.instances.find(instance => instance.name === name);
+        
+        // If no group exists, create a new one
+        if (!group) {
+            group = new TodoGroup(name);
+        }
+
+        return group;
+    }
+
     addTodo(todo) {
         this.todos.push(todo);
-        console.log(`${todo} added successfully`);
     }
 }
 

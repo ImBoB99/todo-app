@@ -1,6 +1,6 @@
 import "./styles.css";
 import { TodoGroup } from "./modules/TodoGroup";
-import {displayTodoGroup} from "./modules/displayTodoGroup";
+import { displayTodoGroup } from "./modules/displayTodoGroup";
 import { state } from "./modules/state";
 import { initializeTodoForm } from "./modules/initializeTodoForm";
 import { initializeTodoGroupForm } from "./modules/initializeTodoGroupForm";
@@ -42,27 +42,36 @@ const defaultTodos = [
 defaultTodos.forEach(todo => defaultProject.addTodo(todo));
 displayTodos(defaultProject);
 
+// Add populate/load storage on initial load
 
-// Second Project: Second Project
-const secondProject = new TodoGroup("Second Project");
+import { populateLocalStorage } from "./modules/populateLocalStorage";
 
-const secondProjectTodos = [
-    new Todo("Walk the cat", "Sunday, November 3 2024", "Medium"),
-    new Todo("Set up home office", "Monday, November 4 2024", "High"),
-    new Todo("Read a new book", "Wednesday, November 6 2024", "Low"),
-    new Todo("Create monthly budget", "Thursday, November 7 2024", "High"),
-    new Todo("Research for new blog post", "Friday, November 8 2024", "Medium"),
-    new Todo("Organize bookshelf", "Saturday, November 9 2024", "Low"),
-    new Todo("Backup laptop data", "Sunday, November 10 2024", "Medium"),
-    new Todo("Plan a weekend hike", "Saturday, November 9 2024", "Medium"),
-    new Todo("Complete online course module", "Friday, November 8 2024", "High"),
-    new Todo("Clean up old documents", "Saturday, November 9 2024", "Low")
-];
+if (!localStorage.getItem("Default Project")) {
+    populateLocalStorage();
+} else {
 
-// Add each todo to the Second Project
-secondProjectTodos.forEach(todo => secondProject.addTodo(todo));
-displayTodos(secondProject);
+    // Iterate through each key in localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const storedData = localStorage.getItem(key);
 
-displayTodoGroup("Second Project");
+        // Parse the stored data
+        const parsedStorage = JSON.parse(storedData);
 
+        // Find or create a TodoGroup with the parsed name
+        const parsedTodoGroup = TodoGroup.findOrCreate(parsedStorage.name);
 
+        // Clear existing todos in the group to avoid duplicates
+        parsedTodoGroup.todos = [];
+
+        // Create and add each Todo to the parsedTodoGroup
+        parsedStorage.todos.forEach(todo => {
+            const newTodo = new Todo(todo.title, todo.dueDate, todo.priority, todo.finished);
+            parsedTodoGroup.addTodo(newTodo);  // Add each Todo to the TodoGroup
+        });
+
+        // Display the todos from the parsedTodoGroup
+        displayTodos(parsedTodoGroup);
+        if (parsedTodoGroup.name !== "Default Project") displayTodoGroup(parsedTodoGroup.name)
+    }
+}

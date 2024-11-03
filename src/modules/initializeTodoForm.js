@@ -2,6 +2,7 @@ import { Todo } from "./Todo";
 import { displayTodos } from "./displayTodos";
 import { state } from "./state";
 import { validateTodoForm } from "./helperFunctions";
+import { populateLocalStorage } from "./populateLocalStorage";
 
 import { parse, format } from 'date-fns'
 
@@ -36,6 +37,10 @@ function initializeTodoForm(currentTodoGroup) {
             state.currentTodoGroup.addTodo(newTodo);
             displayTodos(state.currentTodoGroup);
             displayError.style.display = "none";
+
+            // Update local storage
+            populateLocalStorage()
+            console.log("Local storage updated")
 
             todoForm.close();
         } else {
