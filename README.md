@@ -2,6 +2,8 @@
 
 A simple and dynamic Todo web application to help you manage and organize your tasks efficiently. This app allows you to create multiple projects, set priorities, and manage due dates for each task. It also supports data persistence in `localStorage`, so your tasks are saved even after refreshing the browser.
 
+See live on - https://imbob99.github.io/todo-app/
+
 <img src="todo-tod-exercise.png" alt="Main View" width="500">
 
 ## Features
