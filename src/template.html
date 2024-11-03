@@ -17,8 +17,8 @@
     <dialog id="todoForm">
         <form>
             <div class="form-title">
-                <label for="form-todotitle">Todo Title</label>
-                <input type="text" name="form-todotitle" id="form-todotitle">
+                <label for="form-todotitle">The Todo</label>
+                <input type="text" name="form-todotitle" id="form-todotitle" placeholder="Something you have to do">
                 <span class="error-title"></span>
             </div>
             <div class="form-date">
@@ -33,8 +33,10 @@
                     <option>High</option>
                 </select>
             </div>
-            <button value="cancel" formmethod="dialog">Cancel</button>
-            <button id="todoForm-confirm">Confirm</button>
+            <div class="todoForm-buttons">
+                <button value="cancel" formmethod="dialog" class="btn-red">Cancel</button>
+                <button id="todoForm-confirm" class="btn-green">Confirm</button>
+            </div>
         </form>
     </dialog>
 
