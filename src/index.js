@@ -4,9 +4,6 @@ import { displayTodoGroup } from "./modules/displayTodoGroup";
 import { state } from "./modules/state";
 import { initializeTodoForm } from "./modules/initializeTodoForm";
 import { initializeTodoGroupForm } from "./modules/initializeTodoGroupForm";
-import { displayTodayTodos } from "./modules/displayTodayTodos";
-import { displayThisWeekTodos } from "./modules/displayWeekTodos";
-
 import { Todo } from "./modules/Todo";
 import { displayTodos } from "./modules/displayTodos";
 
