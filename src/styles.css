@@ -1,14 +1,13 @@
 :root {
-  --teal: #08D9D6;
-  --blueblack: #252A34;
-  --red: #FF2E63;
-  --grey: #EAEAEA;
-  --white: #FFFF;
+  --teal: #08d9d6;
+  --blueblack: #252a34;
+  --red: #ff2e63;
+  --grey: #eaeaea;
+  --white: #ffff;
   --darkblack: #101010;
   --green: #aaffaa;
   --error: #ffbebe;
 }
-
 
 *,
 *::before,
@@ -270,7 +269,7 @@ main {
   transform: translate(-50%, -50%);
 }
 
-#add-todo+.menu-text {
+#add-todo + .menu-text {
   cursor: default;
 }
 
