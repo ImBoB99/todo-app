@@ -3,52 +3,48 @@ import { displayTodos } from "./displayTodos";
 import { state } from "./state";
 import { validateTodoForm } from "./helperFunctions";
 import { populateLocalStorage } from "./populateLocalStorage";
+import { parse, format } from "date-fns";
 
-import { parse, format } from 'date-fns'
+function initializeTodoForm() {
+  const showTodoForm = document.querySelector("#add-todo");
+  const todoForm = document.querySelector("#todoForm");
+  const todoFormConfirm = document.querySelector("#todoForm-confirm");
 
-function initializeTodoForm(currentTodoGroup) {
+  showTodoForm.addEventListener("click", () => {
+    todoForm.showModal();
+  });
 
-    const showTodoForm = document.querySelector("#add-todo");
-    const todoForm = document.querySelector("#todoForm");
-    const todoFormConfirm = document.querySelector("#todoForm-confirm");
+  todoFormConfirm.addEventListener("click", (event) => {
+    event.preventDefault();
 
-    showTodoForm.addEventListener("click", () => {
-        todoForm.showModal();
-    });
+    const todoTitle = document.getElementById("form-todotitle").value;
+    const todoDueDate = document.getElementById("form-tododuedate").value;
+    const todoPriority = document.getElementById("form-todopriority").value;
 
-    todoFormConfirm.addEventListener("click", (event) => {
-        event.preventDefault();
+    const displayError = document.querySelector(".error-title");
 
-        const todoTitle = document.getElementById("form-todotitle").value;
-        const todoDueDate = document.getElementById("form-tododuedate").value;
-        const todoPriority = document.getElementById("form-todopriority").value;
+    if (validateTodoForm(todoTitle, todoDueDate)) {
+      // use date-fns to parse and format the date
+      const parsedDueDate = parse(todoDueDate, "yyyy-MM-dd", new Date());
+      const formattedDueDate = format(parsedDueDate, "EEEE, MMMM d yyyy");
 
-        const displayError = document.querySelector(".error-title");
+      const newTodo = new Todo(todoTitle, formattedDueDate, todoPriority);
 
-        if (validateTodoForm(todoTitle, todoDueDate)) {
-            
-            // use date-fns to parse and format the date
-            const parsedDueDate = parse(todoDueDate, 'yyyy-MM-dd', new Date())
-            const formattedDueDate = format(parsedDueDate, 'EEEE, MMMM d yyyy');
+      // Add the new todo to the current todo group
+      state.currentTodoGroup.addTodo(newTodo);
+      displayTodos(state.currentTodoGroup);
+      displayError.style.display = "none";
 
-            const newTodo = new Todo(todoTitle, formattedDueDate, todoPriority);
+      // Update local storage
+      populateLocalStorage();
+      console.log("Local storage updated");
 
-            // Add the new todo to the current todo group
-            state.currentTodoGroup.addTodo(newTodo);
-            displayTodos(state.currentTodoGroup);
-            displayError.style.display = "none";
-
-            // Update local storage
-            populateLocalStorage()
-            console.log("Local storage updated")
-
-            todoForm.close();
-        } else {
-            displayError.innerHTML = "Todo Title is required";
-            displayError.style.display = "flex";
-        }
-    })
-
+      todoForm.close();
+    } else {
+      displayError.innerHTML = "Todo Title is required";
+      displayError.style.display = "flex";
+    }
+  });
 }
 
-export { initializeTodoForm }
+export { initializeTodoForm };

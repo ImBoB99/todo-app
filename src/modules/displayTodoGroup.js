@@ -4,17 +4,20 @@ import { setCurrentTodoGroup } from "./state";
 // display a created Todo Group and add event listeners for Todo Group switching
 
 function displayTodoGroup(todoGroupName) {
-    const todoGroupsContainer = document.querySelector("#projectContainer");
-    const menuItem = document.createElement("div");
-    menuItem.classList.add("menu-item");
-    menuItem.setAttribute("todo-group", `${todoGroupName}`);
-    const menuIcon = document.createElement("div");
-    menuIcon.classList.add("menu-icon");
-    const menuIconSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    menuIconSvg.setAttribute("viewBox", "0 0 24 24");
-    menuIconSvg.setAttribute("fill", "none");
+  const todoGroupsContainer = document.querySelector("#projectContainer");
+  const menuItem = document.createElement("div");
+  menuItem.classList.add("menu-item");
+  menuItem.setAttribute("todo-group", `${todoGroupName}`);
+  const menuIcon = document.createElement("div");
+  menuIcon.classList.add("menu-icon");
+  const menuIconSvg = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg",
+  );
+  menuIconSvg.setAttribute("viewBox", "0 0 24 24");
+  menuIconSvg.setAttribute("fill", "none");
 
-    menuIconSvg.innerHTML = `
+  menuIconSvg.innerHTML = `
                             <g stroke-width="0"></g>
                             <g stroke-linecap="round" stroke-linejoin="round"></g>
                             <g>
@@ -32,24 +35,26 @@ function displayTodoGroup(todoGroupName) {
                                     fill="currentColor"></path>
                             </g>
     `;
-    menuIcon.appendChild(menuIconSvg);
+  menuIcon.appendChild(menuIconSvg);
 
-    const menuText = document.createElement("span");
+  const menuText = document.createElement("span");
 
-    menuText.textContent = todoGroupName;
-    menuText.classList.add("menu-text");
+  menuText.textContent = todoGroupName;
+  menuText.classList.add("menu-text");
 
-    menuItem.append(menuIcon, menuText);
+  menuItem.append(menuIcon, menuText);
 
-    todoGroupsContainer.append(menuItem);
+  todoGroupsContainer.append(menuItem);
 
-    menuItem.addEventListener("click", () => {
-        const projectIndex = TodoGroup.instances.findIndex(group => group.name === todoGroupName);
+  menuItem.addEventListener("click", () => {
+    const projectIndex = TodoGroup.instances.findIndex(
+      (group) => group.name === todoGroupName,
+    );
 
-        // Switch the active group on click
+    // Switch the active group on click
 
-        setCurrentTodoGroup(TodoGroup.instances[projectIndex]);
-    })
+    setCurrentTodoGroup(TodoGroup.instances[projectIndex]);
+  });
 }
 
-export {displayTodoGroup}
+export { displayTodoGroup };

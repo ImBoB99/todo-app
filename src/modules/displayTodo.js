@@ -1,34 +1,38 @@
-// function to render a single TODO element to the DOM
 import { state } from "./state";
 import { displayTodos } from "./displayTodos";
 
+// function to render a single TODO element to the DOM
+
 function displayTodo(title, date, priority, index, finished) {
-    const content = document.querySelector(".content");
+  const content = document.querySelector(".content");
 
-    const todoDiv = document.createElement("div");
-    todoDiv.classList.add("todo");
-    todoDiv.setAttribute("index", `${index}`);
-    todoDiv.setAttribute("finished", `${finished}`);
+  const todoDiv = document.createElement("div");
+  todoDiv.classList.add("todo");
+  todoDiv.setAttribute("index", `${index}`);
+  todoDiv.setAttribute("finished", `${finished}`);
 
-    const todoCheckbox = document.createElement("div");
-    todoCheckbox.classList.add("todo-checkbox");
+  const todoCheckbox = document.createElement("div");
+  todoCheckbox.classList.add("todo-checkbox");
 
-    const todoDescription = document.createElement("div");
-    todoDescription.classList.add("todo-description");
+  const todoDescription = document.createElement("div");
+  todoDescription.classList.add("todo-description");
 
-    const todoTitle = document.createElement("p");
-    todoTitle.classList.add("todo-title");
-    todoTitle.textContent = title;
+  const todoTitle = document.createElement("p");
+  todoTitle.classList.add("todo-title");
+  todoTitle.textContent = title;
 
-    const todoDate = document.createElement("div");
-    todoDate.classList.add("todo-date");
+  const todoDate = document.createElement("div");
+  todoDate.classList.add("todo-date");
 
-    // Add SVG clock icon to todoDate
-    const clockIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    clockIcon.setAttribute("class", "clock-icon");
-    clockIcon.setAttribute("viewBox", "0 0 24 24");
-    clockIcon.setAttribute("fill", "none");
-    clockIcon.innerHTML = `
+  // Add SVG clock icon to todoDate
+  const clockIcon = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg",
+  );
+  clockIcon.setAttribute("class", "clock-icon");
+  clockIcon.setAttribute("viewBox", "0 0 24 24");
+  clockIcon.setAttribute("fill", "none");
+  clockIcon.innerHTML = `
         <g stroke-width="0"></g>
         <g stroke-linecap="round" stroke-linejoin="round"></g>
         <g>
@@ -37,23 +41,26 @@ function displayTodo(title, date, priority, index, finished) {
             <path d="M16.24 16.24L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </g>
     `;
-    todoDate.appendChild(clockIcon);
+  todoDate.appendChild(clockIcon);
 
-    const dueDate = document.createElement("div");
-    dueDate.setAttribute("id", "due-date");
-    dueDate.textContent = date;
-    todoDate.appendChild(dueDate);
+  const dueDate = document.createElement("div");
+  dueDate.setAttribute("id", "due-date");
+  dueDate.textContent = date;
+  todoDate.appendChild(dueDate);
 
-    const todoPriority = document.createElement("p");
-    todoPriority.classList.add("todo-priority");
-    todoPriority.textContent = `${priority} Priority`;
+  const todoPriority = document.createElement("p");
+  todoPriority.classList.add("todo-priority");
+  todoPriority.textContent = `${priority} Priority`;
 
-    const deleteIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    deleteIcon.setAttribute("class", "delete-icon");
-    deleteIcon.setAttribute("viewBox", "0 0 24 24");
-    deleteIcon.setAttribute("fill", "none");
+  const deleteIcon = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "svg",
+  );
+  deleteIcon.setAttribute("class", "delete-icon");
+  deleteIcon.setAttribute("viewBox", "0 0 24 24");
+  deleteIcon.setAttribute("fill", "none");
 
-    deleteIcon.innerHTML = `    <g stroke-width="0"></g>
+  deleteIcon.innerHTML = `    <g stroke-width="0"></g>
     <g stroke-linecap="round" stroke-linejoin="round"></g>
     <g>
         <path
@@ -66,38 +73,36 @@ function displayTodo(title, date, priority, index, finished) {
         <path d="M10 12V17" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
     </g>
     `;
-    todoDiv.appendChild(deleteIcon)
+  todoDiv.appendChild(deleteIcon);
 
-    todoDescription.append(todoTitle, todoDate, todoPriority);
+  todoDescription.append(todoTitle, todoDate, todoPriority);
 
-    todoDiv.append(todoCheckbox, todoDescription);
+  todoDiv.append(todoCheckbox, todoDescription);
 
-    content.append(todoDiv);
+  content.append(todoDiv);
 
-    // Event listener for todo completion toggling
+  // Event listener for todo completion toggling
 
-    todoCheckbox.addEventListener("click", (event) => {
+  todoCheckbox.addEventListener("click", (event) => {
+    const index = event.target.parentElement.getAttribute("index");
+    state.currentTodoGroup.todos[index].toggleFinished();
+    todoDiv.setAttribute(
+      "finished",
+      `${state.currentTodoGroup.todos[index].finished}`,
+    );
+  });
 
-        const index = event.target.parentElement.getAttribute("index");
-        state.currentTodoGroup.todos[index].toggleFinished();
-        todoDiv.setAttribute("finished", `${state.currentTodoGroup.todos[index].finished}`);
-    })
+  // Event listener for todo deletion
 
+  deleteIcon.addEventListener("click", (event) => {
+    const index = event.target.parentElement.getAttribute("index");
 
-    // Event listener for todo deletion
+    if (index !== -1) {
+      state.currentTodoGroup.todos.splice(index, 1);
+    }
 
-    deleteIcon.addEventListener("click", (event) => {
-
-        const index = event.target.parentElement.getAttribute("index");
-
-        if (index !== -1) {
-            state.currentTodoGroup.todos.splice(index, 1);
-        }
-
-        displayTodos(state.currentTodoGroup);
-
-    })
-
+    displayTodos(state.currentTodoGroup);
+  });
 }
 
-export { displayTodo }
+export { displayTodo };
